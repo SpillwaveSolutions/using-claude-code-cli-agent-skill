@@ -1,5 +1,5 @@
 ---
-name: using-claude-code-cli
+name: using-claude-code-cli-agent-skill
 description: |
   Invoke Claude Code CLI from Python orchestrators and shell scripts. Use when asked to
   "spawn claude as subprocess", "automate claude cli", "run claude headless",
@@ -67,7 +67,7 @@ CLI Automation Setup:
 
 **Minimal automation:**
 ```bash
-claude -p "Your prompt" --allowedTools Write Read Edit
+claude -p "Your prompt" --allowedTools Write Read Edit --max-turns 5
 ```
 
 **Full automation:**
@@ -186,4 +186,27 @@ When using OpenCode as fallback, note key differences:
 | Settings | `--settings JSON` | Not supported |
 | Add dirs | `--add-dir /path` | Not supported |
 
-See [subprocess-patterns.md](references/subprocess-patterns.md) for fallback implementation.
+**Try-Claude-then-OpenCode pattern:**
+```python
+import subprocess
+
+def invoke_with_fallback(prompt: str, timeout: int = 300) -> str:
+    """Try Claude CLI first, fall back to OpenCode on failure."""
+    try:
+        result = subprocess.run(
+            ["claude", "-p", prompt, "--allowedTools", "Write", "Read"],
+            capture_output=True, text=True, timeout=timeout
+        )
+        if result.returncode == 0:
+            return result.stdout
+    except (subprocess.TimeoutExpired, FileNotFoundError):
+        pass  # Fall through to OpenCode
+
+    result = subprocess.run(
+        ["opencode", "run", prompt],
+        capture_output=True, text=True, timeout=timeout
+    )
+    return result.stdout
+```
+
+See [subprocess-patterns.md](references/subprocess-patterns.md) for advanced patterns.
