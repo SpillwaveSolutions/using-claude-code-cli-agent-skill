@@ -1,5 +1,5 @@
 ---
-name: using-claude-code-cli-agent-skill
+name: using-claude-code-cli
 description: |
   Invoke Claude Code CLI from Python orchestrators and shell scripts. Use when asked to
   "spawn claude as subprocess", "automate claude cli", "run claude headless",
