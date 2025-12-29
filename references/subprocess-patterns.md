@@ -24,7 +24,7 @@ def invoke_claude(prompt: str, allowed_tools: list[str] = None,
     """Invoke Claude CLI synchronously.
 
     Args:
-        prompt: The prompt to send to Claude
+        prompt: Prompt text for invocation
         allowed_tools: Tools to pre-approve (eliminates permission prompts)
         add_dirs: Additional directories to grant access
         timeout: Maximum execution time in seconds
@@ -86,8 +86,8 @@ async def invoke_claude_async(prompt: str, working_dir: str = None,
     Uses create_subprocess_exec for safe async invocation without shell.
 
     Args:
-        prompt: The prompt to send
-        working_dir: Directory to run Claude in
+        prompt: Prompt text for invocation
+        working_dir: Directory for execution context
         allowed_tools: Tools to pre-approve
         timeout: Maximum wait time in seconds
 

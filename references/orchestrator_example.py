@@ -1,19 +1,5 @@
 #!/usr/bin/env python3
-"""
-Complete Claude CLI Orchestrator Example
-
-This reference demonstrates all the patterns for invoking Claude Code CLI
-from a Python orchestrator, including:
-- Tool pre-approval with --allowedTools
-- Directory access with --add-dir
-- Hooks configuration with --settings
-- Sandbox mode via stdin
-- Async parallel invocation
-- Fallback to secondary CLI
-- JSON extraction from output
-
-Based on patterns from the Book Generator v2 project.
-"""
+"""Reference implementation of CLIOrchestrator class with all invocation patterns."""
 
 import asyncio
 import json
