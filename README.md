@@ -1,18 +1,22 @@
 # Using Claude Code CLI
 
+[![Agent Skill Standard](https://img.shields.io/badge/Agent%20Skill-Standard-blue)](https://agentskills.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Skilz Compatible](https://img.shields.io/badge/skilz-compatible-green)](https://github.com/SpillwaveSolutions/skilz-cli)
+
 A Claude Code skill for programmatically invoking Claude Code CLI from Python orchestrators, shell scripts, and automation pipelines.
 
 ## Overview
 
 This skill provides comprehensive patterns for:
 
-- **Tool Pre-Approval** — Eliminate permission prompts with `--allowedTools`
-- **Directory Access** — Grant Claude access to additional directories with `--add-dir`
-- **Hooks Configuration** — Set up logging, monitoring, and blocking hooks
-- **Sandbox Mode** — Safe execution for untrusted operations
-- **Python Patterns** — Synchronous, async, and parallel subprocess invocation
-- **JSON Extraction** — Parse structured output from CLI responses
-- **Fallback Strategies** — OpenCode CLI as backup
+- **Tool Pre-Approval** - Eliminate permission prompts with `--allowedTools`
+- **Directory Access** - Grant Claude access to additional directories with `--add-dir`
+- **Hooks Configuration** - Set up logging, monitoring, and blocking hooks
+- **Sandbox Mode** - Safe execution for untrusted operations
+- **Python Patterns** - Synchronous, async, and parallel subprocess invocation
+- **JSON Extraction** - Parse structured output from CLI responses
+- **Fallback Strategies** - OpenCode CLI as backup
 
 ## Quick Start
 
@@ -29,6 +33,89 @@ claude \
   -p "Your automation prompt"
 ```
 
+## Installation
+
+### Using Skilz Universal Installer (Recommended)
+
+The recommended way to install this skill across different AI coding agents is using the [skilz](https://github.com/SpillwaveSolutions/skilz-cli) universal installer.
+
+This skill supports the [Agent Skill Standard](https://agentskills.io/) which means it works with 14+ coding agents including Claude Code, OpenAI Codex, Cursor, and Gemini CLI.
+
+#### Install Skilz
+
+```bash
+pip install skilz
+```
+
+#### Install from SkillzWave Marketplace
+
+The easiest way to install is from the [SkillzWave Marketplace](https://skillzwave.ai/skill/SpillwaveSolutions__using-claude-code-cli-agent-skill__using-claude-code-cli__SKILL/):
+
+```bash
+# Claude Code (user-level - available in all projects)
+skilz install SpillwaveSolutions_using-claude-code-cli-agent-skill/using-claude-code-cli
+
+# Claude Code (project-level)
+skilz install SpillwaveSolutions_using-claude-code-cli-agent-skill/using-claude-code-cli --project
+
+# OpenCode
+skilz install SpillwaveSolutions_using-claude-code-cli-agent-skill/using-claude-code-cli --agent opencode
+
+# OpenAI Codex
+skilz install SpillwaveSolutions_using-claude-code-cli-agent-skill/using-claude-code-cli --agent codex
+
+# Gemini CLI (project-level only)
+skilz install SpillwaveSolutions_using-claude-code-cli-agent-skill/using-claude-code-cli --agent gemini
+```
+
+#### Install from GitHub
+
+You can also install directly from GitHub using HTTPS or SSH:
+
+```bash
+# HTTPS
+skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill
+
+# SSH
+skilz install --git git@github.com:SpillwaveSolutions/using-claude-code-cli-agent-skill.git
+```
+
+**Agent-specific GitHub installs:**
+
+```bash
+# Claude Code (user-level)
+skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill
+
+# Claude Code (project-level)
+skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill --project
+
+# OpenCode
+skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill --agent opencode
+
+# OpenAI Codex
+skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill --agent codex
+
+# Gemini CLI
+skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill --agent gemini
+```
+
+#### Installation Locations
+
+| Agent | User-Level Location | Project-Level Location |
+|-------|---------------------|------------------------|
+| Claude Code | `~/.claude/skills/` | `./.claude/skills/` |
+| OpenCode | `~/.config/opencode/skills/` | `./.opencode/skills/` |
+| OpenAI Codex | `~/.codex/skills/` | `./.codex/skills/` |
+| Gemini CLI | N/A | `./GEMINI.md` (inline) |
+
+#### Other Supported Agents
+
+Skilz supports 14+ coding agents including Windsurf, Qwen Code, Aidr, Cursor, and more.
+
+For the full list of supported platforms, visit:
+- [SkillzWave Platforms](https://skillzwave.ai/platforms/)
+- [skilz-cli GitHub Repository](https://github.com/SpillwaveSolutions/skilz-cli)
+
 ## File Structure
 
 ```
@@ -43,114 +130,6 @@ using-claude-code-cli/
     ├── json-extraction.md             # Parsing JSON from output
     └── orchestrator_example.py        # Complete Python orchestrator class
 ```
-
-## Installing with Skilz (Universal Installer)
-
-The recommended way to install this skill across different AI coding agents is using the **skilz** universal installer.
-
-### Install Skilz
-
-```bash
-pip install skilz
-```
-
-This skill supports [Agent Skill Standard](https://agentskills.io/) which means it supports 14 plus coding agents including Claude Code, OpenAI Codex, Cursor and Gemini.
-
-
-### Git URL Options
-
-You can use either `-g` or `--git` with HTTPS or SSH URLs:
-
-```bash
-# HTTPS URL
-skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill
-
-# SSH URL
-skilz install --git git@github.com:SpillwaveSolutions/using-claude-code-cli-agent-skill.git
-```
-
-### Claude Code
-
-Install to user home (available in all projects):
-```bash
-skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill
-```
-
-Install to current project only:
-```bash
-skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill --project
-```
-
-### OpenCode
-
-Install for [OpenCode](https://opencode.ai):
-```bash
-skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill --agent opencode
-```
-
-Project-level install:
-```bash
-skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill --project --agent opencode
-```
-
-### Gemini
-
-Project-level install for Gemini:
-```bash
-skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill --agent gemini
-```
-
-### OpenAI Codex
-
-Install for OpenAI Codex:
-```bash
-skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill --agent codex
-```
-
-Project-level install:
-```bash
-skilz install -g https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill --project --agent codex
-```
-
-
-### Install from Skillzwave Marketplace
-```bash
-# Claude to user home dir ~/.claude/skills
-skilz install SpillwaveSolutions_using-claude-code-cli-agent-skill/using-claude-code-cli
-
-# Claude skill in project folder ./claude/skills
-skilz install SpillwaveSolutions_using-claude-code-cli-agent-skill/using-claude-code-cli --project
-
-# OpenCode install to user home dir ~/.config/opencode/skills
-skilz install SpillwaveSolutions_using-claude-code-cli-agent-skill/using-claude-code-cli --agent opencode
-
-# OpenCode project level
-skilz install SpillwaveSolutions_using-claude-code-cli-agent-skill/using-claude-code-cli --agent opencode --project
-
-# OpenAI Codex install to user home dir ~/.codex/skills
-skilz install SpillwaveSolutions_using-claude-code-cli-agent-skill/using-claude-code-cli
-
-# OpenAI Codex project level ./.codex/skills
-skilz install SpillwaveSolutions_using-claude-code-cli-agent-skill/using-claude-code-cli --agent opencode --project
-
-
-# Gemini CLI (project level) -- only works with project level
-skilz install SpillwaveSolutions_using-claude-code-cli-agent-skill/using-claude-code-cli --agent gemini
-
-```
-
-See this site [skill Listing](https://skillzwave.ai/skill/SpillwaveSolutions__using-claude-code-cli-agent-skill__using-claude-code-cli__SKILL/) to see how to install this exact skill to 14+ different coding agents.
-
-
-### Other Supported Agents
-
-Skilz supports 14+ coding agents including Windsurf, Qwen Code, Aidr, and more.
-
-For the full list of supported platforms, visit [SkillzWave.ai/platforms](https://skillzwave.ai/platforms/) or see the [skilz-cli GitHub repository](https://github.com/SpillwaveSolutions/skilz-cli)
-
-
-<a href="https://skillzwave.ai/">Largest Agentic Marketplace for AI Agent Skills</a> and
-<a href="https://spillwave.com/">SpillWave: Leaders in AI Agent Development.</a>
 
 ## Triggers
 
@@ -168,6 +147,14 @@ The skill activates on queries containing:
 | Parsing JSON from output | [json-extraction.md](references/json-extraction.md) |
 | Complete orchestrator class | [orchestrator_example.py](references/orchestrator_example.py) |
 | CLI flag reference | [cli-reference.md](references/cli-reference.md) |
+
+## Links
+
+- [Skill Listing on SkillzWave](https://skillzwave.ai/skill/SpillwaveSolutions__using-claude-code-cli-agent-skill__using-claude-code-cli__SKILL/)
+- [GitHub Repository](https://github.com/SpillwaveSolutions/using-claude-code-cli-agent-skill)
+- [Agent Skill Standard](https://agentskills.io/)
+- [SkillzWave Marketplace](https://skillzwave.ai/)
+- [SpillWave Solutions](https://spillwave.com/)
 
 ## License
 
